@@ -1,0 +1,21 @@
+/* Logic Advance — service worker: keeps the app on the phone so it can be played offline. */
+const PREFIX = 'logic-advance-';
+const CACHE = PREFIX + '9b219294a0';
+const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png', 'icons/apple-touch-icon.png'];
+self.addEventListener('install', e => {
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
+});
+self.addEventListener('activate', e => {
+  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k.startsWith(PREFIX) && k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()));
+});
+self.addEventListener('fetch', e => {
+  const req = e.request;
+  if (req.method !== 'GET' || !req.url.startsWith(self.registration.scope)) return;
+  e.respondWith(caches.open(CACHE).then(c => c.match(req, { ignoreSearch: true }).then(hit => {
+    const net = fetch(req).then(res => {
+      if (res && res.ok) c.put(req, res.clone());
+      return res;
+    }).catch(() => hit);
+    return hit || net;
+  })));
+});
