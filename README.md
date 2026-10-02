@@ -4,7 +4,7 @@ A game for learning formal logic with Fitch-style natural deduction, dressed as 
 
 **Play it:** https://ontoterrorist.github.io/logic-advance/
 
-Seven worlds, each with theory and challenges:
+Ten worlds, each with theory and challenges:
 
 | World | Topic |
 |---|---|
@@ -15,6 +15,9 @@ Seven worlds, each with theory and challenges:
 | 4 · De Re Citadel | First-order modal logic |
 | 5 · The Constructor's Workshop | Intuitionistic logic |
 | 6 · Cavern of Contradictions | Paraconsistent logic (LP) |
+| 7 · Garden of Witnesses | First-order intuitionistic logic |
+| 8 · Abyss of Paradoxes | First-order paraconsistent logic (LP) |
+| 9 · Gödel's Tower | Formal arithmetic, Gödel numbering and the incompleteness theorems |
 
 ## Install it on your phone
 

@@ -1,6 +1,6 @@
 /* Logic Advance — service worker: keeps the app on the phone so it can be played offline. */
 const PREFIX = 'logic-advance-';
-const CACHE = PREFIX + '24876d2d0c';
+const CACHE = PREFIX + 'f20910dbf4';
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/maskable-512.png', 'icons/apple-touch-icon.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
